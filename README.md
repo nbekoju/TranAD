@@ -1,6 +1,6 @@
 ### To run in your local machine
 ```
-git clone https://github.com/nbekoju/Dockerize-TranAD
+git clone https://github.com/nbekoju/TranAD
 ```
 
 Build the docker file
