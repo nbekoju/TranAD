@@ -4,6 +4,7 @@ from src.spot import SPOT
 from src.constants import *
 from sklearn.metrics import *
 
+
 def calc_point2point(predict, actual):
     """
     calculate f1 score by predict and actual.
@@ -26,10 +27,7 @@ def calc_point2point(predict, actual):
 
 
 # the below function is taken from OmniAnomaly code base directly
-def adjust_predicts(score, label,
-                    threshold=None,
-                    pred=None,
-                    calc_latency=False):
+def adjust_predicts(score, label, threshold=None, pred=None, calc_latency=False):
     """
     Calculate adjusted predict labels using given `score`, `threshold` (or given `pred`) and `label`.
     Args:
@@ -56,15 +54,15 @@ def adjust_predicts(score, label,
     anomaly_count = 0
     for i in range(len(score)):
         if actual[i] and predict[i] and not anomaly_state:
-                anomaly_state = True
-                anomaly_count += 1
-                for j in range(i, 0, -1):
-                    if not actual[j]:
-                        break
-                    else:
-                        if not predict[j]:
-                            predict[j] = True
-                            latency += 1
+            anomaly_state = True
+            anomaly_count += 1
+            for j in range(i, 0, -1):
+                if not actual[j]:
+                    break
+                else:
+                    if not predict[j]:
+                        predict[j] = True
+                        latency += 1
         elif not actual[i]:
             anomaly_state = False
         if anomaly_state:
@@ -80,7 +78,9 @@ def calc_seq(score, label, threshold, calc_latency=False):
     Calculate f1 score for a score sequence
     """
     if calc_latency:
-        predict, latency = adjust_predicts(score, label, threshold, calc_latency=calc_latency)
+        predict, latency = adjust_predicts(
+            score, label, threshold, calc_latency=calc_latency
+        )
         t = list(calc_point2point(predict, label))
         t.append(latency)
         return t
@@ -103,7 +103,7 @@ def bf_search(score, label, start, end=None, step_num=1, display_freq=1, verbose
     if verbose:
         print("search range: ", search_lower_bound, search_lower_bound + search_range)
     threshold = search_lower_bound
-    m = (-1., -1., -1.)
+    m = (-1.0, -1.0, -1.0)
     m_t = 0.0
     for i in range(search_step):
         threshold += search_range / float(search_step)
@@ -136,13 +136,17 @@ def pot_eval(init_score, score, label, q=1e-5, level=0.02):
         try:
             s = SPOT(q)  # SPOT object
             s.fit(init_score, score)  # data import
-            s.initialize(level=lms, min_extrema=False, verbose=False)  # initialization step
-        except: lms = lms * 0.999
-        else: break
+            s.initialize(
+                level=lms, min_extrema=False, verbose=False
+            )  # initialization step
+        except:
+            lms = lms * 0.999
+        else:
+            break
     ret = s.run(dynamic=False)  # run
     # print(len(ret['alarms']))
     # print(len(ret['thresholds']))
-    pot_th = np.mean(ret['thresholds']) * lm[1]
+    pot_th = np.mean(ret["thresholds"]) * lm[1]
     # pot_th = np.percentile(score, 100 * lm[0])
     # np.percentile(score, 100 * lm[0])
     pred, p_latency = adjust_predicts(score, label, pot_th, calc_latency=True)
@@ -151,14 +155,14 @@ def pot_eval(init_score, score, label, q=1e-5, level=0.02):
     p_t = calc_point2point(pred, label)
     # print('POT result: ', p_t, pot_th, p_latency)
     return {
-        'f1': p_t[0],
-        'precision': p_t[1],
-        'recall': p_t[2],
-        'TP': p_t[3],
-        'TN': p_t[4],
-        'FP': p_t[5],
-        'FN': p_t[6],
-        'ROC/AUC': p_t[7],
-        'threshold': pot_th,
+        "f1": p_t[0],
+        "precision": p_t[1],
+        "recall": p_t[2],
+        "TP": p_t[3],
+        "TN": p_t[4],
+        "FP": p_t[5],
+        "FN": p_t[6],
+        "ROC/AUC": p_t[7],
+        "threshold": pot_th,
         # 'pot-latency': p_latency
     }, np.array(pred)
