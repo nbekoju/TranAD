@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/945510866311899735/334c454a5439468baf2ac761ad92170f/artifacts
+end_time: 1723727742358
+entry_point_name: ''
+experiment_id: '945510866311899735'
+lifecycle_stage: active
+run_id: 334c454a5439468baf2ac761ad92170f
+run_name: 04_changing_lm
+run_uuid: 334c454a5439468baf2ac761ad92170f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1723727649727
+status: 3
+tags: []
+user_id: Nirajan

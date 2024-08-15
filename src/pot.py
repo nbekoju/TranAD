@@ -133,7 +133,6 @@ def pot_eval(init_score, score, label, q=1e-5, level=0.02):
     """
     lm = (0.99995, 1.06)
     lms = lm[0]
-    
 
     while True:
         try:

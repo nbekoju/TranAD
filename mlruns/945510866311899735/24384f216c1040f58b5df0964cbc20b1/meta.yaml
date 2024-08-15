@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/945510866311899735/24384f216c1040f58b5df0964cbc20b1/artifacts
+deleted_time: 1723726169864
+end_time: 1723723474005
+entry_point_name: ''
+experiment_id: '945510866311899735'
+lifecycle_stage: deleted
+run_id: 24384f216c1040f58b5df0964cbc20b1
+run_name: 02_run_changing_windows_size
+run_uuid: 24384f216c1040f58b5df0964cbc20b1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1723723273670
+status: 3
+tags: []
+user_id: Nirajan

@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/945510866311899735/ec27e92c35bd43d9a264ed52a1450deb/artifacts
+end_time: 1723726472483
+entry_point_name: ''
+experiment_id: '945510866311899735'
+lifecycle_stage: active
+run_id: ec27e92c35bd43d9a264ed52a1450deb
+run_name: 02_Increasing_window_size
+run_uuid: ec27e92c35bd43d9a264ed52a1450deb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1723726272675
+status: 3
+tags: []
+user_id: Nirajan
