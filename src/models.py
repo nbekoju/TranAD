@@ -632,5 +632,7 @@ class TranAD(nn.Module):
         x1 = self.fcn(self.transformer_decoder1(*self.encode(src, c, tgt)))
         # Phase 2 - With anomaly scores
         c = (x1 - src) ** 2
+        print("focus score shape : ", c.shape)
         x2 = self.fcn(self.transformer_decoder2(*self.encode(src, c, tgt)))
-        return x2
+        # x2 is the reconstructed last timestep
+        return x1, x2, c
